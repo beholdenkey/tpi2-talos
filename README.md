@@ -658,27 +658,27 @@ spec:
         app: busybox
     spec:
       containers:
-      - name: busybox
-        image: busybox:1.35
-        command: ['sh', '-c', 'echo Container 1 is Running ; sleep 3600']
-        resources:
-          limits:
-            cpu: 500m
-            memory: "256Mi"
-          requests:
-            cpu: 200m
-            memory: "128Mi"
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 3306
-          name: busybox
-        volumeMounts:
-        - mountPath: /var/lib/mysql
-          name: demo-vol1
+        - name: busybox
+          image: busybox:1.35
+          command: ["sh", "-c", "echo Container 1 is Running ; sleep 3600"]
+          resources:
+            limits:
+              cpu: 500m
+              memory: "256Mi"
+            requests:
+              cpu: 200m
+              memory: "128Mi"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+              name: busybox
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: demo-vol1
       volumes:
-      - name: demo-vol1
-        persistentVolumeClaim:
-          claimName: example-jiva-csi-pvc
+        - name: demo-vol1
+          persistentVolumeClaim:
+            claimName: example-jiva-csi-pvc
 ```
 
 Create a file named `pvc-test.yaml` with the following contents:
